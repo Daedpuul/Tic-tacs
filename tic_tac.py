@@ -1,3 +1,5 @@
+import random as rand
+players= ['X','O']
 game_board = [['q','q','q'],
               ['q','q','q'],
               ['q','q','q']]
@@ -28,30 +30,48 @@ def victory():
         # row = ['q', 'q', 'q']
         if row.count('X') == 3:
             print("Player X Won!")
-        if row.count('Y') == 3:
-            print("Player Y Won!")
+        if row.count('O') == 3:
+            print("Player O Won!")
 
     ## Check columns for all of one value
     for index in range(2):
         if column(game_board, index).count('X') == 3:
             print('Player X Won!')
-        if column(game_board, index).count('Y') == 3:
-            print('Player Y Won!')
+        if column(game_board, index).count('O') == 3:
+            print('Player O Won!')
 
     ## Check diagonal for all of one value
     down_left, down_right = diagonal(game_board)
     if down_left.count('X') == 3 or down_right.count('X') == 3:
         print('Player X Won!')
 
-     if down_left.count('Y') == 3 or down_right.count('y') == 3:
-        print('Player Y Won!')
+    if down_left.count('O') == 3 or down_right.count('O') == 3:
+        print('Player O Won!')
 
 
 
-move('X', 0, 0)
-move('X', 1, 0)
-move('X', 2, 0)
-print_board(game_board)
-victory()
+
+
+
+def main():
+    print_board(game_board)
+    player=players[rand.randint(0,1)]
+    print("Player ", player, " Goes first")
+    while True:
+        row=int(input('Pick a row any row'))
+        column=int(input('Pick a coulmn'))
+        move(player, row, column)
+        if player=='X':
+            player='O'
+        else:
+            player='X'
+        
+     
+        print_board(game_board)
+        print("Player ", player, " Goes now")
+
+main()
+
+
 
 
