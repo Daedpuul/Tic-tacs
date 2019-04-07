@@ -1,4 +1,5 @@
 import random as rand
+import pygame as game
 players= ['X','O']
 game_board = [['q','q','q'],
               ['q','q','q'],
@@ -106,8 +107,29 @@ def main():
         print_board(game_board)
         print("Player ", player, " Goes now")
 
-main()
+# main()
+game.init()
+(width, height) = (800, 600)
+screen = game.display.set_mode((width, height))
+game.display.flip()
 
+black = (0, 0, 0)
+white = (255, 255, 255) 
+font = game.font.Font('G:\Anaconda\Lib\site-packages\pygame\examples\data\sans.ttf', 32) 
+text = font.render('This is a test', True, white, black) 
+textRect = text.get_rect()  
+textRect.center = (200,200) 
+
+
+center = (200, 200)
+screen.blit(text, textRect) 
+
+running = True
+while running:
+  for event in game.event.get():
+    if event.type == game.QUIT:
+      running = False
+    game.display.update()  
 
 
 
