@@ -78,11 +78,10 @@ def continue_prompt():
 
 
 
-def reset_game(game_board, player):
-    game_board = [['q','q','q'],
-                  ['q','q','q'],
-                  ['q','q','q']]
-    player=players[rand.randint(0,1)]
+def reset_game():
+    for row in range(3):
+        for column in range(3):
+            game_board[row][column] = 'q'
 
 def main():
     print_board(game_board)
@@ -94,7 +93,8 @@ def main():
         move(player, row, column)
         if victory(): 
             if continue_prompt():
-                reset_game(game_board, player)
+                reset_game()
+                player=players[rand.randint(0,1)]
             else:
                 break
         if player=='X':
