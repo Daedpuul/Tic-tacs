@@ -59,7 +59,11 @@ def victory():
     if down_left.count('O') == 3 or down_right.count('O') == 3:
         print('Player O Won!')
         return True
-    return False
+    for row in game_board:
+        if row.count('q') >= 1:
+            return False
+    print ('You were at equal odds') 
+    return True
 
 def continue_prompt():
     continue_input=int(input('Do you dare?\nyes(1)  no(2): '))
