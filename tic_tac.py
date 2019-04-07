@@ -8,8 +8,11 @@ def move(player, row, column):
     if game_board[row][column] == 'q':
         game_board[row][column] = player
     else:
-        print("invalid location")
-
+        while game_board[row][column] != 'q':             
+            print("invalid location")
+            row=int(input('Pick a row any row'))
+            column=int(input('Pick a coulmn'))
+        move(player, row, column)
 def print_board(board):
     print("    0    1    2")
     print_row = 0       
