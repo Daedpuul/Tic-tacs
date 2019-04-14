@@ -1,5 +1,11 @@
 import random as rand
 import pygame as game
+
+black = (0, 0, 0)
+white = (255, 255, 255) 
+
+(width, height) = (800, 600)
+
 players= ['X','O']
 game_board = [['q','q','q'],
               ['q','q','q'],
@@ -107,22 +113,37 @@ def main():
         print_board(game_board)
         print("Player ", player, " Goes now")
 
+def init_board (screen):
+    background=game.Surface(screen.get_size())
+    background = background.convert()
+
+    background.fill(white)
+    # vertical lines
+    game.draw.line(background, black, (width/3, 0), (width/3, height),2) 
+    game.draw.line(background, black, (width/3*2, 0), (width/3*2, height),2) 
+   
+    # horizontal 
+    game.draw.line(background, black, (0, 0), (width, 0),2) 
+    game.draw.line(background, black, (0, height/3), (width, height/3),2) 
+    game.draw.line(background, black, (0, height/3*2), (width, height/3*2),2) 
+    game.draw.line(background, black, (0, height), (width, height),6) 
+
+    return background
 # main()
 game.init()
-(width, height) = (800, 600)
 screen = game.display.set_mode((width, height))
 game.display.flip()
 
-black = (0, 0, 0)
-white = (255, 255, 255) 
+board = init_board(screen)
+screen.blit(board,(0, 0 )) 
+game.display.update()
+
 font = game.font.Font('G:\Anaconda\Lib\site-packages\pygame\examples\data\sans.ttf', 32) 
-text = font.render('This is a test', True, white, black) 
-textRect = text.get_rect()  
-textRect.center = (200,200) 
 
 
-center = (200, 200)
-screen.blit(text, textRect) 
+
+
+
 
 running = True
 while running:
